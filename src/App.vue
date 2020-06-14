@@ -1,5 +1,5 @@
 <!-- description = "Weather mobile apps build with VueJS / Node" -->
-<!-- Weather mobile apps -->
+<!-- Weather mobile apps for DR Congo Farmers -->
 <!-- Author = "Chadrack Itsia" -->
 
 <template>
@@ -7,6 +7,7 @@
     <!-- Main container -->
     <main>
       <div class="search-box">
+
         <input 
           type="text" 
           class="search-bar" 
@@ -24,7 +25,7 @@
 
         <div class="weather-box">
           <div class="temp">{{ Math.round(weather.main.temp) }}°c</div>
-          <div class="weather">{{ weather.weather[0].main }}</div>
+          <div class="weather">{{ weather.weather[1].main }}</div>
         </div>
       </div>
     </main>
@@ -45,7 +46,7 @@ export default {
   methods: {
     fetchWeather (e) {
       if (e.key == "Enter") {
-        fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`)
+        fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}&lang={fr}`)
           .then(res => {
             return res.json();
           }).then(this.setResults);
@@ -56,8 +57,8 @@ export default {
     },
     dateBuilder () {
       let d = new Date();
-      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      let months = ["Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aôut", "Septembre", "Octobre", "Novembre", "Decembre"];
+      let days = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
       let day = days[d.getDay()];
       let date = d.getDate();
       let month = months[d.getMonth()];
